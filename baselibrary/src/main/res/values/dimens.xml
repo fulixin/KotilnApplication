@@ -1,0 +1,9 @@
+<resources>
+    <!--字体大小-->
+    <dimen name="page_text_size">18dp</dimen>
+
+    <!--padding或margin值-->
+    <dimen name="paddingOrmargin_5dp">5dp</dimen>
+    <dimen name="paddingOrmargin_10dp">10dp</dimen>
+    <dimen name="paddingOrmargin_15dp">15dp</dimen>
+</resources>

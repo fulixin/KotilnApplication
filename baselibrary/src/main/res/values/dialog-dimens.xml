@@ -1,0 +1,8 @@
+<resources>
+    <!--默认弹窗背景-->
+    <dimen name="dialog_bg_padding">5dp</dimen>
+    <dimen name="dialog_bg_stroke_width">1dp</dimen>
+    <dimen name="dialog_bg_radius">15dp</dimen>
+    <dimen name="dialog_bg_width">200dp</dimen>
+    <dimen name="dialog_bg_height">70dp</dimen>
+</resources>
