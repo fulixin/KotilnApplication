@@ -1,11 +1,10 @@
 package kotiln.com.demo.ui
 
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import kotiln.com.baselibrary.activity.ActivityBase
+import kotiln.com.baselibrary.adapter.CommAdapter
+import kotiln.com.baselibrary.adapter.util.CommHelper
 import kotiln.com.baselibrary.tools.note.ViewInits
 import kotiln.com.demo.R
 
@@ -22,6 +21,9 @@ class MainActivity1 : ActivityBase() {
     @field:ViewInits(R.id.id_activity_main_button_btn, true, false, "")
     lateinit var id_button_btn: Button
 
+    @field:ViewInits(R.id.id_activity_main_listview_lv, false, false, "")
+    lateinit var id_listview_lv: ListView
+
     override fun getLayout(): View {
         return viewIdToView(R.layout.activity_main)
     }
@@ -29,6 +31,17 @@ class MainActivity1 : ActivityBase() {
     override fun initData() {
         id_textview_show.text = "这是一个测试内容"
         id_button_btn.text = "点击我把"
+
+        var list: MutableList<String> = ArrayList()
+        for (i in 0..5) {
+            list.add("数据" + i)
+        }
+        id_listview_lv.adapter = object : CommAdapter<String>(this@MainActivity1, list, R.layout.activity_main_item) {
+            override fun initView(viewHelper: CommHelper, item: String, position: Int) {
+                (viewHelper.getConverView().findViewById(R.id.id_activity_main_item_textview_show) as TextView).text = item
+            }
+
+        }
     }
 
     override fun initOnClick(v: View?) {
