@@ -1,0 +1,4 @@
+1.0.0
+IDataInface数据处理（json转换，map转换）
+IDialogInface弹窗
+ViewInits注解
