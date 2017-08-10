@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.*
 import kotiln.com.baselibrary.activity.ActivityBase
 import kotiln.com.baselibrary.adapter.CommAdapter
-import kotiln.com.baselibrary.adapter.util.CommHelper
+import kotiln.com.baselibrary.adapter.util.impl.CommHelperImpl
 import kotiln.com.baselibrary.tools.note.ViewInits
 import kotiln.com.demo.R
 
@@ -37,8 +37,10 @@ class MainActivity1 : ActivityBase() {
             list.add("数据" + i)
         }
         id_listview_lv.adapter = object : CommAdapter<String>(this@MainActivity1, list, R.layout.activity_main_item) {
-            override fun initView(viewHelper: CommHelper, item: String, position: Int) {
-                (viewHelper.getConverView().findViewById(R.id.id_activity_main_item_textview_show) as TextView).text = item
+            override fun initView(viewHelper: CommHelperImpl, item: String, position: Int) {
+                viewHelper.setTextView(R.id.id_activity_main_item_textview_show, item, onClick = View.OnClickListener {
+                    Toast.makeText(this@MainActivity1, "单击了" + position, Toast.LENGTH_SHORT).show()
+                })
             }
 
         }

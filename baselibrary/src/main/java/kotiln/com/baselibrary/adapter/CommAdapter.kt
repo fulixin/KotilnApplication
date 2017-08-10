@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import kotiln.com.baselibrary.adapter.util.CommHelper
+import kotiln.com.baselibrary.adapter.util.impl.CommHelperImpl
 
 /**
  * Created by fulixin on 2017/8/10.
@@ -20,10 +20,10 @@ public abstract class CommAdapter<T> constructor(mContext: Context, datas: Mutab
         this.layoutId = layoutId
     }
 
-    abstract fun initView(viewHelper: CommHelper, item: T, position: Int)
+    abstract fun initView(viewHelper: CommHelperImpl, item: T, position: Int)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        var commHelper: CommHelper = initCommHelper(convertView, parent)
+        var commHelper: CommHelperImpl = initCommHelper(convertView, parent)
         initView(commHelper, datas[position], position)
         return commHelper.getConverView()
     }
@@ -40,7 +40,7 @@ public abstract class CommAdapter<T> constructor(mContext: Context, datas: Mutab
         return datas.size
     }
 
-    private fun initCommHelper(converView: View?, parent: ViewGroup?): CommHelper {
-        return CommHelper.getCommHelper(mContext, converView, parent, layoutId)
+    private fun initCommHelper(converView: View?, parent: ViewGroup?): CommHelperImpl {
+        return CommHelperImpl.getCommHelper(mContext, converView, parent, layoutId)
     }
 }
