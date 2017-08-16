@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ListView
+    <kotiln.com.baselibrary.view.SwipeListView
         android:id="@+id/id_activity_main_listview_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"/>
 </LinearLayout>

@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import kotiln.com.baselibrary.adapter.util.ICommHelperInface
+import kotiln.com.baselibrary.view.SwipeItemLayout
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.onLongClick
 
 /**
  * Created by fulixin on 2017/8/10.
  */
-class CommHelperImpl constructor(mContext: Context, parent: ViewGroup?, layoutId: Int) : ICommHelperInface {
+class CommHelperImpl constructor(mContext: Context, parent: ViewGroup?, layoutId: Int, isDelete: Boolean, deleteLayoutId: Int) : ICommHelperInface {
     override fun setTextView(viewId: Int, str: String, onLongClick: View.OnLongClickListener?) {
         setTextView(viewId, str, null, onLongClick)
     }
@@ -26,7 +27,7 @@ class CommHelperImpl constructor(mContext: Context, parent: ViewGroup?, layoutId
     }
 
     override fun setTextView(viewId: Int, str: String, onClick: View.OnClickListener?, onLongClick: View.OnLongClickListener?) {
-        var textview: TextView = (getConverView().findViewById(viewId) as TextView)
+        var textview: TextView = (converView.findViewById(viewId) as TextView)
         textview.text = str
         if (onClick != null) {
             textview.onClick {
@@ -45,16 +46,23 @@ class CommHelperImpl constructor(mContext: Context, parent: ViewGroup?, layoutId
     private lateinit var converView: View
 
     init {
-        converView = LayoutInflater.from(mContext).inflate(layoutId, parent, false)
-        converView.tag = this
+        if (isDelete) {
+            var view1: View = LayoutInflater.from(mContext).inflate(layoutId, parent, false)
+            var view2: View = LayoutInflater.from(mContext).inflate(deleteLayoutId, parent, false)
+            converView = SwipeItemLayout(view1, view2, null, null)
+            converView.tag = this
+        } else {
+            converView = LayoutInflater.from(mContext).inflate(layoutId, parent, false)
+            converView.tag = this
+        }
     }
 
     companion object {
-        fun getCommHelper(mContext: Context, converView: View?, parent: ViewGroup?, layoutId: Int): CommHelperImpl {
+        fun getCommHelper(mContext: Context, converView: View?, parent: ViewGroup?, layoutId: Int, isDelete: Boolean, deleteLayoutId: Int): CommHelperImpl {
             if (converView != null) {
                 return converView!!.tag as CommHelperImpl
             }
-            return CommHelperImpl(mContext, parent, layoutId)
+            return CommHelperImpl(mContext, parent, layoutId, isDelete, deleteLayoutId)
         }
     }
 

@@ -13,11 +13,18 @@ public abstract class CommAdapter<T> constructor(mContext: Context, datas: Mutab
     lateinit var mContext: Context
     lateinit var datas: MutableList<T>
     var layoutId: Int
+    var isDelete: Boolean = false
+    var deleteLayoutId: Int = 0
 
     init {
         this.mContext = mContext
         this.datas = datas
         this.layoutId = layoutId
+    }
+
+    constructor(mContext: Context, datas: MutableList<T>, layoutId: Int, deleteLayoutId: Int) : this(mContext, datas, layoutId) {
+        this.deleteLayoutId = deleteLayoutId
+        isDelete = true
     }
 
     abstract fun initView(viewHelper: CommHelperImpl, item: T, position: Int)
@@ -41,6 +48,6 @@ public abstract class CommAdapter<T> constructor(mContext: Context, datas: Mutab
     }
 
     private fun initCommHelper(converView: View?, parent: ViewGroup?): CommHelperImpl {
-        return CommHelperImpl.getCommHelper(mContext, converView, parent, layoutId)
+        return CommHelperImpl.getCommHelper(mContext, converView, parent, layoutId, isDelete, deleteLayoutId)
     }
 }

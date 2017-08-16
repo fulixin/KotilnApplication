@@ -8,4 +8,9 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+    <declare-styleable name="SwipeLayoutStyle">
+        <attr name="item_view" format="reference"/>
+        <attr name="swipe_view" format="reference"/>
+        <attr name="can_swipe" format="boolean"/>
+    </declare-styleable>
 </resources>

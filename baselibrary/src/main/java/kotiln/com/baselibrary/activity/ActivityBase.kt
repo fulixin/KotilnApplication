@@ -1,5 +1,6 @@
 package kotiln.com.baselibrary.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -47,8 +48,8 @@ abstract class ActivityBase : AppCompatActivity() {
     /**
      * 根据view布局id返回view视图
      */
-    public fun viewIdToView(viewId: Int): View {
-        return LayoutInflater.from(this@ActivityBase).inflate(viewId, null);
+    public fun viewIdToView(mContext:Context,viewId: Int): View {
+        return LayoutInflater.from(mContext).inflate(viewId, null);
     }
 
     /**
